@@ -60,7 +60,7 @@ lados_piso = obtener_rectangulos(piso)
 
 #PLATAFORMA
 plataforma_uno = Plataforma(imagen_plataforma_uno,(350,60),(700,600))
-plataforma_dos = Plataforma(imagen_plataforma_uno,(350,60),(300,700))
+plataforma_dos = Plataforma(imagen_plataforma_uno,(350,60),(1550,700))
 
 diccionario_plataformas = {}
 diccionario_plataformas["piso"] = lados_piso
