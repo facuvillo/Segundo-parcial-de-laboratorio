@@ -1,11 +1,14 @@
 from animacion_goku import reescalar_imagenes, obtener_rectangulos
+from class_proyectiles import *
+from animaciones_proyectiles import *
 import pygame
+
 
 class Personaje:
     def __init__(self, tamaño, animaciones, posicion_inicial, velocidad):
         self.ancho = tamaño[0]
         self.alto = tamaño[1]
-        # #VARIABLES SALTO
+        #VARIABLES SALTO
         self.gravedad = 1.25
         self.potencia_salto = -22
         self.limite_velocidad_caida = 100
@@ -58,6 +61,10 @@ class Personaje:
                         if not self.esta_saltando:
                             self.animar(pantalla,"disparar_ki_derecha")
                         self.mover(self.velocidad)
+                        # pos_proyectil_x = self.lados["main"].x
+                        # pos_proyectil_y = self.lados["main"].y
+                        # proyectil_personaje_derecha = Proyectiles((self.lados["main"].x +self.lados["main"].width // 2,self.lados["main"].y),diccionario_proyectiles,self.direccion,50,"personaje")
+                        # proyectil_personaje_derecha.update_proyectil(pantalla)                        
             case "izquierda":
                 match self.que_hace:
                     case "caminar izquierda":
@@ -96,6 +103,7 @@ class Personaje:
             if self.lados["bottom"].colliderect(diccionario_plataformas[plataforma]["top"]):
                 self.esta_saltando = False
                 self.lados["main"].bottom = diccionario_plataformas[plataforma]["top"].top
+                self.lados["bottom"].top = diccionario_plataformas[plataforma]["top"].top
                 self.desplazamiento_y = 0
                 break
             else:
