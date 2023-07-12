@@ -34,3 +34,9 @@ class Enemigo:
                 self.animar(pantalla, "enemigo_uno_derecha")
             case "izquierda":
                 self.animar(pantalla, "enemigo_uno_izquierda")
+
+    # def colsion_proyectil(self, lista_proyectiles):
+    #     for disparo in range(len(lista_proyectiles)):
+    #         print(disparo)
+    #         if self.lados["left"].colliderect(lista_proyectiles[disparo].hitbox["main"]):
+    #             print("colision")

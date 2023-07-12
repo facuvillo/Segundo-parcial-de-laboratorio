@@ -1,6 +1,5 @@
 from animacion_goku import reescalar_imagenes, obtener_rectangulos
 from class_proyectiles import *
-from animaciones_proyectiles import *
 import pygame
 
 
@@ -26,6 +25,7 @@ class Personaje:
         rectangulo.y = posicion_inicial[1]
         self.lados = obtener_rectangulos(rectangulo)
         self.velocidad = velocidad
+
     
     def reescalar_animaciones(self):
         for clave in self.animaciones:
@@ -45,7 +45,7 @@ class Personaje:
         for lado in self.lados:
             self.lados[lado].x += velocidad
 
-    def update(self, pantalla, diccionario_plataformas):
+    def update(self, pantalla, diccionario_plataformas, diccionario_enemigo):
         match self.direccion:
             case "derecha":
                 match self.que_hace:
@@ -60,11 +60,7 @@ class Personaje:
                     case "disparar derecha":
                         if not self.esta_saltando:
                             self.animar(pantalla,"disparar_ki_derecha")
-                        self.mover(self.velocidad)
-                        # pos_proyectil_x = self.lados["main"].x
-                        # pos_proyectil_y = self.lados["main"].y
-                        # proyectil_personaje_derecha = Proyectiles((self.lados["main"].x +self.lados["main"].width // 2,self.lados["main"].y),diccionario_proyectiles,self.direccion,50,"personaje")
-                        # proyectil_personaje_derecha.update_proyectil(pantalla)                        
+                        self.mover(self.velocidad)                   
             case "izquierda":
                 match self.que_hace:
                     case "caminar izquierda":
@@ -88,6 +84,7 @@ class Personaje:
                     self.animar(pantalla, "quieto")
 
         self.aplicar_gravedad(pantalla, diccionario_plataformas)
+        self.colsion_enemigo(diccionario_enemigo)
 
     def aplicar_gravedad(self, pantalla, diccionario_plataformas):
         if self.esta_saltando:
@@ -100,7 +97,7 @@ class Personaje:
                 self.desplazamiento_y += self.gravedad
         
         for plataforma in diccionario_plataformas: 
-            if self.lados["bottom"].colliderect(diccionario_plataformas[plataforma]["top"]):
+            if self.lados["bottom"].colliderect(diccionario_plataformas[plataforma]["main"]):
                 self.esta_saltando = False
                 self.lados["main"].bottom = diccionario_plataformas[plataforma]["top"].top
                 self.lados["bottom"].top = diccionario_plataformas[plataforma]["top"].top
@@ -108,3 +105,26 @@ class Personaje:
                 break
             else:
                 self.esta_saltando = True
+    
+    def colsion_enemigo(self, diccionario_enemigo):
+        enemigos_a_eliminar = []
+        for enemigo in diccionario_enemigo:
+            if self.lados["bottom"].colliderect(diccionario_enemigo[enemigo].lados["top"]):
+                enemigos_a_eliminar.append(enemigo)
+                self.potencia_salto = -21
+                self.limite_velocidad_caida = 66
+                self.esta_saltando = True
+                self.desplazamiento_y = self.potencia_salto
+                if self.esta_saltando:
+
+                    for lado in self.lados:
+                        self.lados[lado].y += self.desplazamiento_y
+                    
+                    if self.desplazamiento_y < self.limite_velocidad_caida:
+                        self.desplazamiento_y += self.gravedad
+
+        for enemigo in enemigos_a_eliminar:
+            del diccionario_enemigo[enemigo]
+
+        self.potencia_salto = -22
+        self.limite_velocidad_caida = 100
