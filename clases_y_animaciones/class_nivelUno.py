@@ -1,14 +1,14 @@
 import pygame
-from animacion_goku import *
+from clases_y_animaciones.animacion_goku import *
 from pygame.locals import *
-from class_personaje import *
+from clases_y_animaciones.class_personaje import *
 from plataformas import *
-from class_plataforma import Plataforma
-from animaciones_enemigos import *
-from class_enemigo import *
-from animaciones_consumibles import *
-from class_monedas import Moneda
-from class_niveles import Nivel
+from clases_y_animaciones.class_plataforma import Plataforma
+from clases_y_animaciones.animaciones_enemigos import *
+from clases_y_animaciones.class_enemigo import *
+from clases_y_animaciones.animaciones_consumibles import *
+from clases_y_animaciones.class_monedas import Moneda
+from clases_y_animaciones.class_niveles import Nivel
 
 class NivelUno(Nivel):
     def __init__(self, pantalla: pygame.surface):

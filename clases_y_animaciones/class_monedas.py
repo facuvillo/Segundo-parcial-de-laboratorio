@@ -1,5 +1,5 @@
 import pygame
-from animacion_goku import obtener_rectangulos
+from clases_y_animaciones.animacion_goku import obtener_rectangulos
 
 class Moneda:
     def __init__(self, moneda, posicion:tuple):

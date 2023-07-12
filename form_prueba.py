@@ -8,8 +8,8 @@ from GUI_form import *
 from GUI_label import *
 from GUI_slider import *
 from GUI_textbox import *
-from formulario_prueba_score import *
-from class_nivelUno import *
+from formulario_nivel_uno import *
+from clases_y_animaciones.class_nivelUno import *
 
 class FormPrueba(Form):
     def __init__(self,screen, x, y, w, h,  color_fondo, color_borde = "Black", border_size = -1, active = True):

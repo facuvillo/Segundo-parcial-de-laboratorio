@@ -4,7 +4,7 @@ from pygame.locals import *
 from GUI_button_image import *
 from GUI_form import *
 from GUI_label import *
-from class_nivelUno import NivelUno
+from clases_y_animaciones.class_nivelUno import NivelUno
 
 class FormMenuScore(Form):
     def __init__(self,screen,x,y,w,h,color_fondo,color_borde,active,path_image, score, margen_y, margen_x, espacio):

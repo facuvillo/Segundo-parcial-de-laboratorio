@@ -1,5 +1,4 @@
-from animacion_goku import reescalar_imagenes, obtener_rectangulos
-from class_proyectiles import *
+from clases_y_animaciones.animacion_goku import reescalar_imagenes, obtener_rectangulos
 import pygame
 
 

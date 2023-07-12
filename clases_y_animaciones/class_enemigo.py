@@ -1,5 +1,5 @@
 import pygame
-from animacion_goku import reescalar_imagenes, obtener_rectangulos
+from clases_y_animaciones.animacion_goku import reescalar_imagenes, obtener_rectangulos
 class Enemigo:
     def __init__(self,tamaño, animaciones, posicion,direccion):
         self.ancho = tamaño[0]
